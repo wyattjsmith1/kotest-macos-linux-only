@@ -1,0 +1,34 @@
+plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.71'
+}
+repositories {
+    mavenCentral()
+}
+group 'com.example'
+version '0.0.1'
+
+apply plugin: 'maven-publish'
+
+kotlin {
+    macosX64("macos")
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation kotlin('stdlib-common')
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation kotlin('test-common')
+                implementation kotlin('test-annotations-common')
+            }
+        }
+        macosMain {
+        }
+        macosTest {
+            dependencies {
+                implementation("io.kotest:kotest-assertions-core-native:4.0.1")
+            }
+        }
+    }
+}
